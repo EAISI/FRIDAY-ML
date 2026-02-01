@@ -1,0 +1,48 @@
+[project]
+name = "FRIDAY-ML"
+version = "0.1.0"
+description = "AI-assisted educational workspace designed to bridge the gap between machine learning theory and practical implementation."
+authors = [
+  {name = "Daniel Kapitan", email = "daniel@kapitan.net"},
+]
+maintainers = [
+  {name = "Daniel Kapitan", email = "daniel@kapitan.net"},
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "altair>=6.0.0",
+    "autogluon>=1.5.0",
+    "duckdb>=1.4.4",
+    "marimo>=0.19.7",
+    "polars>=1.37.1",
+    "pyzmq>=27.1.0",
+    "ruff>=0.14.14",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "vega-datasets>=0.9.0",
+]
+
+[project.optional-dependencies]
+tf-apple = [
+    "keras-visualizer>=3.2.0",
+    "tensorboard>=2.16.2",
+    "tensorflow-datasets>=4.9.9",
+    "tensorflow-macos>=2.16.2",
+    "tensorflow-metal>=1.2.0",
+]
+tf = [
+    "keras-visualizer>=3.2.0",
+    "tensorboard>=2.16.2",
+    "tensorflow>=2.16.2",
+    "tensorflow-datasets>=4.9.9",
+]
+
+[tool.marimo.language_servers.pylsp]
+enabled = true               # Enable/disable the Python language server
+enable_mypy = true           # Type checking with mypy (enabled by default, if installed)
+enable_ruff = true           # Linting with ruff (enabled by default, if installed)
+enable_flake8 = false        # Linting with flake8
+enable_pydocstyle = false    # Check docstring style
+enable_pylint = false        # Linting with pylint
+enable_pyflakes = false      # Syntax checking with pyflakes

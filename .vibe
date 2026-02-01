@@ -1,0 +1,261 @@
+# FRIDAY-ML Vibe Configuration
+# Optimized for the FRIDAY AI skill (Educational ML Assistant)
+#
+# IMPORTANT: All AI agents (Claude Code and Devstral/Vibe) must follow the same rules.
+# For detailed guidance, see:
+# - .claude/CLAUDE.md (Quick reference)
+# - .claude/rules/GUIDELINES.md (Comprehensive AI agent guidance)
+# - .claude/rules/code-style.md (Python and Polars standards)
+# - .claude/rules/marimo.md (Marimo notebook patterns)
+# - .claude/rules/security.md (Security best practices)
+
+# Project-specific settings
+project:
+  name: "FRIDAY-ML"
+  description: "Educational ML workspace with AI-assisted development"
+  root: "."
+  version: "0.1.0"
+  python_version: ">=3.12"
+
+# FRIDAY Skill Integration
+friday:
+  skill_path: ".claude/skills/friday/SKILL.md"
+  primary_skill: true
+
+  # FRIDAY Skill Capabilities
+  capabilities:
+    - "Educational ML concept explanation"
+    - "Marimo notebook development"
+    - "scikit-learn classical machine learning"
+    - "AutoGluon automated ML"
+    - "TensorFlow/Keras deep learning"
+    - "Code auditing and evaluation"
+    - "Model visualization assistance"
+
+# Shared configuration for all AI agents (Claude Code and Devstral/Vibe)
+# Both agents must follow the same rules and guidelines
+ai_agent_config:
+  config_dir: ".claude"
+  rules_dir: ".claude/rules"
+  skills_dir: ".claude/skills"
+
+  # Core guidance documents (REQUIRED READING)
+  main_guidance: ".claude/CLAUDE.md"
+  detailed_guidelines: ".claude/rules/GUIDELINES.md"
+
+  # Specific rule files (ALL MUST BE FOLLOWED)
+  rules:
+    code_style: ".claude/rules/code-style.md"
+    marimo: ".claude/rules/marimo.md"
+    security: ".claude/rules/security.md"
+
+  # Reference materials
+  references:
+    polars_examples: "references/polars/"
+
+# Tool configuration
+tools:
+  enabled:
+    - bash
+    - grep
+    - read_file
+    - write_file
+    - search_replace
+    - todo
+
+# File patterns to include/exclude
+file_patterns:
+  include:
+    - "**.py"
+    - "**.toml"
+    - "**.md"
+    - "**.csv"
+    - ".claude/**"
+    - "references/**"
+  exclude:
+    - ".git/**"
+    - "__pycache__/**"
+    - "*.pyc"
+    - ".venv/**"
+    - "logs/**"
+    - "data/**"
+
+# Default commands
+defaults:
+  shell: "sh"
+  python: "python3"
+
+# FRIDAY Workflow Templates
+# For complete patterns and examples, see .claude/rules/GUIDELINES.md
+friday_workflows:
+  notebook_creation:
+    description: "Create educational Marimo notebook"
+    template: |
+      import marimo as mo
+      import polars as pl
+      import altair as alt
+
+      app = mo.App()
+
+      @app.cell
+      def load_data():
+          # Data loading implementation
+          df = pl.read_csv("data/dataset.csv")
+          return df,
+
+      @app.cell
+      def analyze_data(df):
+          # Analysis implementation
+          summary = df.describe()
+          return summary,
+
+      @app.cell(hide_code=True)
+      def complex_implementation(df):
+          # Hide complex implementation details
+          processed = df.filter(pl.col("value") > 0)
+          return processed,
+
+  sklearn_workflow:
+    description: "Classical ML with scikit-learn"
+    template: |
+      from sklearn.model_selection import train_test_split
+      from sklearn.pipeline import Pipeline
+      from sklearn.preprocessing import StandardScaler
+      from sklearn.ensemble import RandomForestClassifier
+      from sklearn.metrics import classification_report
+
+      # Prepare data
+      X = df.select(feature_columns).to_numpy()
+      y = df.select('target').to_numpy().ravel()
+      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+      # Build pipeline
+      pipeline = Pipeline([
+          ('scaler', StandardScaler()),
+          ('classifier', RandomForestClassifier(n_estimators=100, random_state=42))
+      ])
+
+      # Train and evaluate
+      pipeline.fit(X_train, y_train)
+      y_pred = pipeline.predict(X_test)
+      print(classification_report(y_test, y_pred))
+
+  autogluon_workflow:
+    description: "AutoML with AutoGluon"
+    template: |
+      from autogluon.tabular import TabularPredictor
+
+      # Create predictor with evaluation
+      predictor = TabularPredictor(
+          label=target_column,
+          eval_metric=eval_metric,
+          path="models/experiment_name/"
+      ).fit(
+          train_data,
+          time_limit=300,
+          presets='medium_quality'
+      )
+
+      # Evaluate and explain results
+      leaderboard = predictor.leaderboard()
+      feature_importance = predictor.feature_importance()
+
+  tensorflow_workflow:
+    description: "Deep learning with TensorFlow/Keras"
+    template: |
+      import tensorflow as tf
+      import tensorflow_datasets as tfds
+      from datetime import datetime
+
+      # Load dataset
+      (train_data, test_data), info = tfds.load(
+          name='mnist',
+          split=['train', 'test'],
+          with_info=True,
+          as_supervised=True
+      )
+
+      # Build input pipeline
+      def normalize_img(image, label):
+          return tf.cast(image, tf.float32) / 255., label
+
+      train_data = train_data.map(normalize_img).cache().shuffle(1000).batch(32).prefetch(1)
+
+      # Create and train model
+      model = tf.keras.Sequential([...])
+      model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+      # Configure TensorBoard
+      log_dir = f"logs/fit/{datetime.now():%Y%m%d-%H%M%S}"
+      tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
+
+      history = model.fit(train_data, epochs=10, callbacks=[tensorboard_callback])
+
+# Project-specific context
+# For comprehensive details, see .claude/CLAUDE.md
+context:
+  tech_stack:
+    - "Marimo (reactive notebooks)"
+    - "scikit-learn (classical ML)"
+    - "AutoGluon (AutoML)"
+    - "TensorFlow/Keras (deep learning)"
+    - "Polars (data manipulation)"
+    - "Altair (visualization)"
+    - "uv (package management)"
+
+  development_commands:
+    setup: "uv sync"
+    setup_tf_apple: "uv sync --extra tf-apple"
+    setup_tf: "uv sync --extra tf"
+    run_mnist: "uv run marimo edit notebooks/mnist.py"
+    run_ames_housing: "uv run marimo edit notebooks/ames-housing.py"
+    tensorboard: "uv run tensorboard --logdir logs/"
+
+# AI Agent Guidelines
+# IMPORTANT: These are brief reminders only.
+# ALL agents (Claude Code and Devstral/Vibe) MUST read and follow:
+# - .claude/rules/GUIDELINES.md (comprehensive guidance)
+# - .claude/rules/code-style.md (Python/Polars standards, CRITICAL for code quality)
+# - .claude/rules/marimo.md (Marimo patterns, REQUIRED for notebooks)
+# - .claude/rules/security.md (Security, NEVER commit .env files)
+guidelines:
+  core_principles:
+    - "Prioritize educational clarity over cleverness"
+    - "Use Marimo format for notebooks (.py files, not .ipynb)"
+    - "Leverage AutoGluon to reduce boilerplate code"
+    - "Make data transformations explicit for learner auditing"
+    - "Include visualization and TensorBoard logging"
+    - "Structure Marimo cells to be self-contained with clear dependencies"
+
+  educational_approach:
+    - "Explain the 'why' behind code, not just the 'how'"
+    - "Encourage learners to audit and evaluate AI-generated code"
+    - "Provide progressive disclosure of complexity"
+    - "Use the 'Write less, read more, evaluate everything' philosophy"
+
+  # REQUIRED READING for all AI agents
+  required_rules:
+    - ".claude/rules/GUIDELINES.md"
+    - ".claude/rules/code-style.md"
+    - ".claude/rules/marimo.md"
+    - ".claude/rules/security.md"
+
+  reference_documentation:
+    main_guide: ".claude/CLAUDE.md"
+    polars_examples: "references/polars/"
+
+# Project Structure Reference
+project_structure:
+  directories:
+    notebooks: "Marimo notebooks for ML examples (MNIST, Ames Housing)"
+    data: "Datasets (ames-housing.csv, pima-indians-diabetes.csv)"
+    logs: "TensorBoard logs for training runs"
+    references: "Reference documentation and examples (Polars notebooks)"
+
+  key_files:
+    - "notebooks/mnist.py": "MNIST deep learning with TensorFlow/Keras"
+    - "notebooks/ames-housing.py": "Ames housing price prediction with AutoGluon"
+    - ".claude/CLAUDE.md": "Quick reference for AI agents"
+    - ".claude/rules/GUIDELINES.md": "Comprehensive AI agent guidance"
+    - ".claude/rules/code-style.md": "Python and Polars coding standards"
+    - "references/polars/": "19 comprehensive Polars reference notebooks"
