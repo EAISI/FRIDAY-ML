@@ -24,7 +24,7 @@ Traditional ML courses often trap students in _dependency hell_ or _syntax fatig
 * **[Positron](https://positron.posit.co/):** the best open source data science IDE (integrated development environemnt) that unifies exploratory data analysis and production work.
 * **[scikit-learn](https://scikit-learn.org/):** The standard library for classical machine learning in Python - linear models, tree-based models, clustering, and model evaluation.
 * **[AutoGluon](https://auto.gluon.ai/):** State-of-the-art AutoML to handle feature engineering and model selection, allowing us to focus on high-level architecture.
-* **AI Coding Agents:** Integration with [**Claude Code**]((https://code.claude.com/docs/en/vs-code)) (Anthropic) or [**Devstral 2 Vibe**](https://mistral.ai/news/devstral-2-vibe-cli) (Mistral) to act as your pair programmer.
+* **AI Coding Agents:** Integration with [**Anthropic's Claude Code**](https://code.claude.com/docs/en/vs-code) or [**Mistral's Vibe with Devstral**](https://mistral.ai/news/devstral-2-vibe-cli) (Mistral) to act as your pair programmer.
 
 
 <details>
