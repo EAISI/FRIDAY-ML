@@ -270,7 +270,7 @@ This is not a "Magic Button" tool. It is a coaching tool. To succeed, you must a
 - Focus on the "Why". Why did AutoGluon select a Weighted Ensemble? Why did the AI suggest dropping that column?
 
 ## Attribution
-We salute the creators ['real' F.R.I.D.A.Y.](https://marvelcinematicuniverse.fandom.com/wiki/F.R.I.D.A.Y.), with a nerdy wink of an eye.
+We salute the creators of the ['real' F.R.I.D.A.Y.](https://marvelcinematicuniverse.fandom.com/wiki/F.R.I.D.A.Y.), with a nerdy wink of an eye.
 
 ## 📄 License
 This project is licensed under the MIT License.
