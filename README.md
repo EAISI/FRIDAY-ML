@@ -6,9 +6,6 @@
 
 **FRIDAY-ML** is an interactive educational workspace designed to bridge the gap between machine learning theory and practical implementation in Python.
 
-By combining the best data science tools in the PyData ecosystem and the support of [**Claude Code**](https://code.claude.com/docs/en/vs-code) or [**Mistral Vibe**](https://mistral.ai/news/devstral-2-vibe-cli), we allow learners to focus on principles rather than syntax errors.
-
-> [!Tip]
 > _Think more, write less, read and evaluate everything._
 
 ## Learn how to do machine learing in Python with support from an AI agent
@@ -31,7 +28,7 @@ Traditional machine learning (ML) courses often trap students in dependency hell
 
 <details>
 <summary>Why we use Positron</summary>
-
+<br>
 While Positron is actually built on the same foundation as VS Code (Code OSS), it removes the "assembly required" aspect of setting up a data science environment. If VS Code is a box of Lego bricks, Positron is the pre-built model designed specifically for R and Python.
 
 Positron comes with specialized data panes, similar to those in RStudio.
@@ -45,7 +42,7 @@ Positron comes with specialized data panes, similar to those in RStudio.
 
 <details>
 <summary>Why we use marimo</summary>
-
+<br>
 Traditional notebooks such as Jupyter notebooks as well as commercial notebooks such as Deepnote and Hex are ill-suited for use with agentic coding tools.
 
 - **File format.** By default Jupyter notebooks are stored as JSON with base64-encoded outputs, not Python. But LLMs work best when generating code, and marimo is stored as Python, not JSON, empowering agents to do their best work.
@@ -78,7 +75,7 @@ For more details, see [this blogpost](https://marimo.io/blog/claude-code)
 ### Install FRIDAY-ML
 
 1. Download FRIDAY-ML [here](https://github.com/EAISI/FRIDAY-ML/archive/refs/heads/main.zip)
-2. Unzip the files and move the whole folder to working directory
+2. Unzip the files and move the whole folder to your working directory
 3. Go back to Positron and add the folder to the workspace via `File > Add Folder to Workspace...`
 
 ### Install uv (if not already installed)
@@ -88,26 +85,16 @@ For more details, see [this blogpost](https://marimo.io/blog/claude-code)
 
     - macOS/Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
     - Windows: `powershell -c "irm https://astral.sh/uv/install.ps1 | iex"`
-    ```
+
 
 ###  Install Python dependencies
 
 In the same terminal, install the Python dependencies for FRIDAY-ML
 
-    For standard installation:
-    ```bash
-    uv sync
-    ```
+- For standard installation: `uv sync`
+- For Apple Silicon with TensorFlow support: `uv sync --extra tf-apple`
+- For other systems with TensorFlow support: `uv sync --extra tf`
 
-    For Apple Silicon with TensorFlow support:
-    ```bash
-    uv sync --extra tf-apple
-    ```
-
-    For other systems with TensorFlow support:
-    ```bash
-    uv sync --extra tf
-    ```
 
 
 ## Getting started with Positron Assistant and using `/friday`
@@ -184,4 +171,4 @@ You can invoke it by typing `/friday` in Positron assistant or include it in you
 > This separation between learning and coding maintains the "Write less, read more, evaluate everything" philosophy by ensuring you understand concepts before generating implementation code.
 
 ## Attribution & license 
-We salute the creators of the ['real' F.R.I.D.A.Y.](https://marvelcinematicuniverse.fandom.com/wiki/F.R.I.D.A.Y.), with a nerdy wink of an eye. and also because most lectures as [EAISI Academy](https://www.tue.nl/en/education/professional-education/current-programs/eaisi-academy) are held on Fridays. This project is licensed under the MIT License.
+We salute the creators of the ['real' F.R.I.D.A.Y.](https://marvelcinematicuniverse.fandom.com/wiki/F.R.I.D.A.Y.), with a nerdy wink of an eye and also because most lectures as [EAISI Academy](https://www.tue.nl/en/education/professional-education/current-programs/eaisi-academy) are held on Fridays. This project is licensed under the MIT License.
