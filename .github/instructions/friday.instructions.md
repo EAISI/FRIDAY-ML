@@ -491,6 +491,8 @@ def _():
     return
 ```
 
+If you don't make edits and are just answering questions, just return the Python code without wrapping it in `def _():` function.
+
 ## Marimo fundamentals
 
 Marimo is a reactive notebook that differs from traditional notebooks in key ways:

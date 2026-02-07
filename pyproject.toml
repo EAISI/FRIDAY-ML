@@ -15,6 +15,7 @@ dependencies = [
     "duckdb>=1.4.4",
     "marimo>=0.19.7",
     "polars>=1.37.1",
+    "pyarrow>=20.0.0",
     "pyzmq>=27.1.0",
     "ruff>=0.14.14",
     "scikit-learn>=1.7.2",

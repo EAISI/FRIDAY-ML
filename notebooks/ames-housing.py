@@ -58,9 +58,26 @@ def _(pl):
     # Load the Ames housing dataset
     df = pl.read_csv("../data/ames-housing.csv")
 
-    print(f"Dataset shape: {df.shape}")
-    print(f"Number of features: {len(df.columns) - 1}")
     df.head()
+    return (df,)
+
+
+@app.cell
+def _(df, pl):
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+    # Calculate correlation matrix
+    # Select only numeric columns and convert to pandas for correlation calculation
+    correlation_matrix = df.select(pl.col(pl.Float64, pl.Int64)).to_pandas().corr()
+
+    # Create heatmap
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(correlation_matrix, annot=False, cmap='coolwarm', center=0,
+                square=True, fmt='.2f')
+    plt.title('Correlation Matrix')
+    plt.tight_layout()
+    plt.show()
     return
 
 
