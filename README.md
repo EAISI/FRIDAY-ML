@@ -110,9 +110,14 @@ In the same terminal, install the Python dependencies for FRIDAY-ML
     ```
 
 
-## Using FRIDAY-ML with Positron Assistant
+## Getting started with Positron Assistant and using `/friday`
 
-Once you have installed all the software components you can start using FRIDAY-ML with Positron Assistant.
+Once you have installed all the software components, it is helpful to read the [Getting Started](https://positron.posit.co/assistant-getting-started.html) guide for Positron Assistant. This is where you should also choose your language model provider:
+
+- GitHub Copilot has the best integration with Positron Assistant, it supports code completion
+- Anthropic is recommended for it you plan to use Claude Code in future
+
+Once you have setup your provider, you can start using `/friday`:
 
 1. Open the FRIDAY-ML folder in Positron
 2. The Python interpreter should automatically use the `.venv` created by `uv`
